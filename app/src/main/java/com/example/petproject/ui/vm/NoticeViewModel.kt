@@ -15,4 +15,6 @@ class NoticeViewModel(val repository: Repository) : ViewModel() {
     fun insert(note: Note) = viewModelScope.launch {
         repository.insert(note)
     }
+
+
 }

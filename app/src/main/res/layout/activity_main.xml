@@ -3,6 +3,10 @@
 
     <data>
         <variable
+            name="adapter"
+            type="com.example.petproject.ui.adapters.NoteRecycleViewAdapter" />
+
+        <variable
             name="viewModel"
             type="com.example.petproject.ui.vm.NoticeViewModel" />
     </data>
@@ -16,7 +20,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        app:setAdapter="@{adapter}">
     </androidx.recyclerview.widget.RecyclerView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
