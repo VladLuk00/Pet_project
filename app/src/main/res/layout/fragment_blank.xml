@@ -22,7 +22,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:setAdapter="@{adapter}">
+            app:setAdapter="@{adapter}"
+            android:background="@color/teal_200">
         </androidx.recyclerview.widget.RecyclerView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

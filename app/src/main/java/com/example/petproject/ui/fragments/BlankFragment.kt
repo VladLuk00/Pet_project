@@ -17,16 +17,17 @@ import com.example.petproject.ui.adapters.NoteRecycleViewAdapter
 import com.example.petproject.ui.vm.NoticeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
-class BlankFragment : Fragment() {
+class BlankFragment : Fragment(R.layout.fragment_blank) {
 
     private val viewModel: NoticeViewModel by viewModels()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        Log.d("tag", "fragment 34")
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        Log.d("tag", "fragment 44")
+        /*viewModel.listOfNotices?.observe(viewLifecycleOwner, Observer {
+
+        })*/
         /*val activityBinding: FragmentBlankBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_blank, container, false)
 
@@ -38,14 +39,5 @@ class BlankFragment : Fragment() {
 
         /*viewModel.insert(Note(title = "title", description = "description"))
         Log.d("tag", "${viewModel.listOfNotices}")*/
-        return view
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        Log.d("tag", "fragment 44")
-        viewModel.listOfNotices?.observe(viewLifecycleOwner, Observer {
-
-        })
     }
 }
