@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import com.example.petproject.data.pojo.Note
+import dagger.Component
 import kotlinx.coroutines.flow.Flow
 import java.util.*
 

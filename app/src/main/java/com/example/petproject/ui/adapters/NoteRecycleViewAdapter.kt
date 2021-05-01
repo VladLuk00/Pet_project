@@ -10,7 +10,7 @@ import com.example.petproject.ui.vm.NoticeViewModel
 
 class NoteRecycleViewAdapter(val viewModel: NoticeViewModel) : RecyclerView.Adapter<NoteRecycleViewAdapter.NoteViewHolder>() {
 
-    val listOfNotes = viewModel.listOfNotices.value
+    val listOfNotes = viewModel.listOfNotices?.value
 
     class NoteViewHolder(val binding: RecycleViewItemNoteBinding) : RecyclerView.ViewHolder(binding.root)
 

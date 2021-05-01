@@ -5,18 +5,18 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.petproject.data.pojo.Note
 
-@androidx.room.Database(entities = [Note::class], version = 1)
-abstract class Database() : RoomDatabase() {
+@androidx.room.Database(entities = [Note::class], version = 2)
+abstract class NotesDatabase() : RoomDatabase() {
     abstract fun noteDao(): NoteDao
 
     companion object {
-        var INSTANCE: Database? = null
+        var INSTANCE: NotesDatabase? = null
 
-        fun getDatabase(context: Context): Database {
+        fun getDatabase(context: Context): NotesDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context
-                    , Database::class.java, "note_database"
+                    , NotesDatabase::class.java, "note_database"
                 ).build()
                 INSTANCE = instance
                 instance

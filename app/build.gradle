@@ -1,13 +1,17 @@
 plugins {
     id 'com.android.application'
+    id 'dagger.hilt.android.plugin'
     id 'kotlin-android'
     id 'kotlin-kapt'
+
 }
 
 ext {
     dagger_version = '2.17'
     room_version = "2.3.0"
     lifecycleVersion = '2.3.1'
+    nav_version = "2.3.5"
+    hilt_version = '2.35'
 }
 
 android {
@@ -26,6 +30,12 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
     }
 
     buildTypes {
@@ -43,6 +53,11 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -52,6 +67,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.3.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
@@ -70,13 +86,23 @@ dependencies {
     testImplementation "androidx.room:room-testing:$room_version"
     annotationProcessor "android.arch.persistence.room:compiler:$room_version"
 
+
     // Lifecycle components
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion"
 
-    annotationProcessor "android.arch.lifecycle:compiler:$lifecycleVersion"
-    kapt "android.arch.lifecycle:compiler:$lifecycleVersion"
-    
-//    implementation "androidx.paging:paging-runtime:$paging_version"
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    // Jetpack Compose Integration
+    implementation "androidx.navigation:navigation-compose:1.0.0-alpha10"
+
+    // Feature module Support
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
+
+    classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_version"
+
 }
