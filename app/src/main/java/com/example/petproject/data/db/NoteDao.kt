@@ -16,9 +16,9 @@ interface NoteDao {
     @Query("SELECT * FROM note_table")
     fun getNotes(): Flow<List<Note>>
 
-   @Delete
+    @Delete
    fun deleteNote(note: Note)
 
     @Insert
-    fun insertNote(note: Note)
+    fun insertNote(vararg note: Note)
 }

@@ -14,15 +14,11 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class NoticeViewModel @Inject constructor() : ViewModel() {
+class NoticeViewModel @Inject constructor(val repository: Repository) : ViewModel() {
 
-    var repository: Repository? = null
-        @Inject set
-
-    val listOfNotices: LiveData<List<Note>>? = repository?.listOfNotes().asLiveData()
+    val listOfNotices: LiveData<List<Note>> = repository.listOfNotes().asLiveData()
 
     fun insert(note: Note) = viewModelScope.launch {
-        Log.d("tag", "view model repository : $repository")
-        repository?.insert(note)
+            repository.insert(note)
     }
 }
