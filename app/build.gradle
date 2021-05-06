@@ -2,7 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
-
+    id 'dagger.hilt.android.plugin'
 }
 
 ext {
@@ -20,7 +20,7 @@ android {
     buildFeatures {
         dataBinding true
     }
-
+    
     defaultConfig {
         applicationId "com.example.petproject"
         minSdkVersion 21
@@ -52,11 +52,6 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
 }
 
 dependencies {
@@ -83,8 +78,6 @@ dependencies {
     kapt "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
     testImplementation "androidx.room:room-testing:$room_version"
-    annotationProcessor "android.arch.persistence.room:compiler:$room_version"
-
 
     // Lifecycle components
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
@@ -102,5 +95,6 @@ dependencies {
 
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
+    kapt "com.google.dagger:hilt-android-compiler:2.29.1-alpha"
 
 }
