@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/notesFragment">
+
+
+    <fragment
+        android:id="@+id/notesFragment"
+        android:name="com.example.petproject.ui.fragments.NotesFragment"
+        android:label="fragment_blank2"
+        tools:layout="@layout/fragment_list_note" >
+        <action
+            android:id="@+id/action_notesFragment_to_nav_graph"
+            app:destination="@id/nav_graph" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/directoriesNotesFragment"
+        android:name="com.example.petproject.ui.fragments.DirectoriesNotesFragment"
+        android:label="DirectoriesNotesFragment" />
+
+    <include app:graph="@navigation/add_note_graph" />
+
+</navigation>

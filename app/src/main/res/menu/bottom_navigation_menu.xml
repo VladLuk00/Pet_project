@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Directories"></item>
-    <item android:title="Notes"></item>
+    <item android:title="Directories"
+        android:id="@+id/directoriesNotesFragment">
+
+    </item>
+    <item android:title="Notes"
+        android:id="@+id/notesFragment">
+    </item>
 
 </menu>

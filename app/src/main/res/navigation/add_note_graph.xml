@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph"
+    app:startDestination="@id/addNoteFragment">
+
+    <fragment
+        android:id="@+id/addNoteFragment"
+        android:name="com.example.petproject.ui.fragments.AddNoteFragment"
+        android:label="AddNoteFragment" />
+</navigation>
