@@ -21,6 +21,4 @@
         android:name="com.example.petproject.ui.fragments.DirectoriesNotesFragment"
         android:label="DirectoriesNotesFragment" />
 
-    <include app:graph="@navigation/add_note_graph" />
-
 </navigation>

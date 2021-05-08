@@ -3,9 +3,9 @@ package com.example.petproject.ui.fragments
 import android.R.attr.data
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -16,6 +16,7 @@ import com.example.petproject.R
 import com.example.petproject.data.pojo.Note
 import com.example.petproject.databinding.FragmentListNoteBinding
 import com.example.petproject.ui.vm.NoticeViewModel
+import com.google.android.material.appbar.MaterialToolbar
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -32,7 +33,7 @@ class NotesFragment : Fragment(R.layout.fragment_list_note) {
     ): View? {
 
         val binding: FragmentListNoteBinding =
-            DataBindingUtil.inflate(layoutInflater,R.layout.fragment_list_note, container, false)
+            DataBindingUtil.inflate(layoutInflater, R.layout.fragment_list_note, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
@@ -45,7 +46,15 @@ class NotesFragment : Fragment(R.layout.fragment_list_note) {
         }
 
         val view = binding.root
-
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_toolbar_list_note, menu)
+        return super.onCreateOptionsMenu(menu, inflater)
     }
 }
