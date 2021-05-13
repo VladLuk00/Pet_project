@@ -31,4 +31,10 @@ class NoticeViewModel @Inject constructor(val repository: Repository) : ViewMode
             listOfNotices.value = _listOfNoties
         }
     }
+
+    fun delete() {
+        CoroutineScope(Job()).launch(Dispatchers.Default) {
+            repository.delete()
+        }
+    }
 }

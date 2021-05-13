@@ -22,4 +22,8 @@ class Repository @Inject constructor(val noteDao: NoteDao) {
     suspend fun listOfNotes(): List<Note> {
         return noteDao.getNotes()
     }
+
+    fun delete() {
+        noteDao.delete()
+    }
 }

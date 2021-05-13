@@ -33,16 +33,17 @@ class NotesFragment : Fragment(R.layout.fragment_list_note) {
         binding.lifecycleOwner = this
         binding.adapter = notesAdapter
 
-  /*      CoroutineScope(Job()).launch(Dispatchers.Default) {
+        CoroutineScope(Job()).launch(Dispatchers.Default) {
             viewModel.setNotices()
-
-        }*/
+            viewModel.insert(Note(description = "desc", title = "title"))
+            viewModel.insert(Note(description = "desc", title = "title"))
+            viewModel.insert(Note(description = "desc", title = "title"))
+            viewModel.insert(Note(description = "desc", title = "title"))
+        }
 
         viewModel.listOfNotices.observe(viewLifecycleOwner, Observer {
             it.let(notesAdapter::submitList)
-            Log.d("tag", "${viewModel.listOfNotices.value}")
         })
-
 
         val view = binding.root
         return view

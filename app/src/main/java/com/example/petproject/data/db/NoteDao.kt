@@ -19,6 +19,6 @@ interface NoteDao {
     @Insert
     fun insertNote(vararg note: Note)
 
-    @Delete
+    @Query("DELETE FROM note_table")
     fun delete()
 }

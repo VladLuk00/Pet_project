@@ -1,7 +1,10 @@
 package com.example.petproject.ui.binding
 
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.petproject.data.model.Note
+import com.example.petproject.ui.adapters.NewAdapter
 
 object NoteRecycleViewBinding {
 
@@ -11,4 +14,5 @@ object NoteRecycleViewBinding {
         this.adapter = adapter
         this.setHasFixedSize(true)
     }
+
 }
