@@ -4,21 +4,21 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.petproject.data.pojo.Note
-import dagger.Component
-import kotlinx.coroutines.flow.Flow
-import java.util.*
+import com.example.petproject.data.model.Note
 
 
 @Dao
 interface NoteDao {
 
     @Query("SELECT * FROM note_table")
-    fun getNotes(): Flow<List<Note>>
+    suspend fun getNotes(): List<Note>
 
     @Delete
    fun deleteNote(note: Note)
 
     @Insert
     fun insertNote(vararg note: Note)
+
+    @Delete
+    fun delete()
 }

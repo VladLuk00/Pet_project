@@ -1,4 +1,4 @@
-package com.example.petproject.utils
+package com.example.petproject.di
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
