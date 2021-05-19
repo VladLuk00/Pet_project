@@ -1,4 +1,4 @@
-package com.example.petproject.ui.activity
+package com.example.petproject.ui.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

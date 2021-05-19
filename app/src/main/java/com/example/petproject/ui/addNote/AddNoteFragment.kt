@@ -1,4 +1,4 @@
-package com.example.petproject.ui.fragments
+package com.example.petproject.ui.addNote
 
 import androidx.fragment.app.Fragment
 import com.example.petproject.R

@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/notesFragment"
-        android:name="com.example.petproject.ui.fragments.NotesFragment"
+        android:name="com.example.petproject.ui.notes.NotesFragment"
         android:label="fragment_blank2"
         tools:layout="@layout/fragment_list_note" >
         <action
@@ -18,7 +18,7 @@
 
     <fragment
         android:id="@+id/directoriesNotesFragment"
-        android:name="com.example.petproject.ui.fragments.DirectoriesNotesFragment"
+        android:name="com.example.petproject.ui.directories.view.DirectoriesNotesFragment"
         android:label="DirectoriesNotesFragment" />
 
 </navigation>

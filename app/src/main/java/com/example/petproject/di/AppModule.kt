@@ -26,4 +26,6 @@ object AppModule {
     @Provides
     fun provideNoteDao(notesDatabase: NotesDatabase) = notesDatabase.noteDao()
 
+    @Provides
+    fun provideLabelDao(notesDatabase: NotesDatabase) = notesDatabase.labelDao()
 }

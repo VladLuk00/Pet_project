@@ -10,12 +10,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PetProject">
-        <activity android:name=".ui.activity.MainActivity">
+        <activity android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity android:name=".ui.addNote.AddNoteActivity" >
+
+        </activity>
+
+        <activity android:name=".ui.noteInfo.NoteInfoActivity" >
+
         </activity>
     </application>
 

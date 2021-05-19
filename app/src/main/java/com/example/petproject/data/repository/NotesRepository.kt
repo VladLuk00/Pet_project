@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.coroutines.suspendCoroutine
 
-class Repository @Inject constructor(val noteDao: NoteDao) {
+class NotesRepository @Inject constructor(val noteDao: NoteDao) {
 
     fun insert(note: Note) {
         CoroutineScope(Job()).launch {
@@ -25,5 +25,13 @@ class Repository @Inject constructor(val noteDao: NoteDao) {
 
     fun delete() {
         noteDao.delete()
+    }
+
+    suspend fun updateDescription(desciption: String, id: Int) {
+        noteDao.updateDescription(desciption, id)
+    }
+
+    suspend fun updateTitle(title: String, id: Int) {
+        noteDao.updateDescription(title, id)
     }
 }

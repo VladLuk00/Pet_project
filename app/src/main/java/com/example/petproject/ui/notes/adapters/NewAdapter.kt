@@ -1,4 +1,4 @@
-package com.example.petproject.ui.adapters
+package com.example.petproject.ui.notes.adapters
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.petproject.data.model.Note
 import com.example.petproject.databinding.RecycleViewItemNoteBinding
 
-class NewAdapter : ListAdapter<Note, NewAdapter.NotesViewHolder> (Companion) {
+class NewAdapter(val onItemClick: (Note) -> Unit) : ListAdapter<Note, NewAdapter.NotesViewHolder> (Companion) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotesViewHolder {
@@ -21,11 +21,10 @@ class NewAdapter : ListAdapter<Note, NewAdapter.NotesViewHolder> (Companion) {
 
 
     override fun onBindViewHolder(holder: NotesViewHolder, position: Int) {
-        Log.d("tag", "bind")
         val currentUser = getItem(position)
         holder.binding.note = currentUser
         holder.binding.executePendingBindings()
-
+        holder.itemView.setOnClickListener { onItemClick(currentUser) }
     }
 
     class NotesViewHolder(val binding: RecycleViewItemNoteBinding) :

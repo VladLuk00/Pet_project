@@ -7,17 +7,17 @@
     <data>
         <variable
             name="adapter"
-            type="com.example.petproject.ui.adapters.NewAdapter" />
+            type="com.example.petproject.ui.notes.adapters.NewAdapter" />
 
         <variable
             name="viewModel"
-            type="com.example.petproject.ui.vm.NoticeViewModel" />
+            type="com.example.petproject.ui.notes.NoticeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.fragments.NotesFragment">
+        tools:context=".ui.notes.NotesFragment">
 
         <include
             android:id="@+id/toolbar_list_note_id"
@@ -27,18 +27,29 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@color/teal_200"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar_list_note_id"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="2"
-            app:setCustomAdapter="@{adapter}">
+            app:setCustomAdapter="@{adapter}"
+            app:spanCount="2">
 
         </androidx.recyclerview.widget.RecyclerView>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/appCompatButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_add_24"
+            app:layout_constraintBottom_toBottomOf="@+id/recyclerView"
+            app:layout_constraintEnd_toEndOf="parent">
+
+        </androidx.appcompat.widget.AppCompatButton>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

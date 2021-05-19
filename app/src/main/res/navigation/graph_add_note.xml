@@ -5,6 +5,6 @@
 
     <fragment
         android:id="@+id/addNoteFragmentId"
-        android:name="com.example.petproject.ui.fragments.AddNoteFragment"
+        android:name="com.example.petproject.ui.addNote.AddNoteFragment"
         android:label="AddNoteFragment" />
 </navigation>
