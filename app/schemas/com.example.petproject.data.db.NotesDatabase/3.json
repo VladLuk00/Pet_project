@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 3,
-    "identityHash": "953cd18af078c4c4a56412d33c22fbd7",
+    "identityHash": "41259178381d665b6972d4413d643836",
     "entities": [
       {
         "tableName": "note_table",
@@ -44,13 +44,13 @@
       },
       {
         "tableName": "label_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`labelId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `color` INTEGER)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`labelId` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `color` INTEGER)",
         "fields": [
           {
             "fieldPath": "labelId",
             "columnName": "labelId",
             "affinity": "INTEGER",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "name",
@@ -78,7 +78,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '953cd18af078c4c4a56412d33c22fbd7')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '41259178381d665b6972d4413d643836')"
     ]
   }
 }

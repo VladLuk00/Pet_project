@@ -25,7 +25,6 @@ class NotificationDialog : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         saveChanges = view.findViewById(R.id.buttonSaveNotificationChanges)
         cancelChanges = view.findViewById(R.id.buttonCancelNotificationChanges)
-
         cancelChanges.setOnClickListener { dismiss() }
     }
 }

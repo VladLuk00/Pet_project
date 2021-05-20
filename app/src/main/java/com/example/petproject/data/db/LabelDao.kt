@@ -1,6 +1,7 @@
 package com.example.petproject.data.db
 
 import androidx.room.Dao
+import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Transaction
 import com.example.petproject.data.model.Label
@@ -12,4 +13,7 @@ interface LabelDao {
 
     @Query("SELECT * FROM label_table")
     fun getListLabels() : Single<List<Label>>
+
+    @Insert
+    fun insertLabel(label: Label) : Observable<Boolean>
 }

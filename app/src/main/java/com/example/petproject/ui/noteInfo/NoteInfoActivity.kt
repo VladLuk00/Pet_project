@@ -36,8 +36,6 @@ class NoteInfoActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragmentNoteInfo) as NavHostFragment
         val navController = navHostFragment.navController
         val configuration = AppBarConfiguration(navController.graph)
-
-
         val toolbar: Toolbar = findViewById(R.id.toolbarNoteInfo)
 
         NavigationUI.setupWithNavController(toolbar, navController, configuration)

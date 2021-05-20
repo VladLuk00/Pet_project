@@ -5,6 +5,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import com.example.petproject.data.db.NotesDatabase
+import com.example.petproject.ui.directories.interactor.LabelInteractor
+import com.example.petproject.ui.directories.view.RecycleViewLabelAdapter
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -28,4 +30,9 @@ object AppModule {
 
     @Provides
     fun provideLabelDao(notesDatabase: NotesDatabase) = notesDatabase.labelDao()
+
+    @Provides
+    @Singleton
+    fun provideRecycleViewLabelAdapter() = RecycleViewLabelAdapter(listOf())
+
 }
