@@ -14,6 +14,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.widget.doAfterTextChanged
 import androidx.core.widget.doOnTextChanged
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
 import com.example.petproject.R
 import com.example.petproject.ui.noteInfo.dialogs.NotificationDialog
 import com.example.petproject.ui.notes.NoticeViewModel
@@ -26,33 +29,19 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class NoteInfoActivity : AppCompatActivity() {
 
-    private val viewModel by viewModels<NoticeViewModel>()
-
-    lateinit var description: EditText
-    lateinit var title: EditText
-    var id: Int = 0
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_note_info)
 
-        description = findViewById(R.id.noteInfoDescriptionId)
-        title = findViewById(R.id.noteInfoTitleId)
-        id = intent.getIntExtra("id", -1)
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragmentNoteInfo) as NavHostFragment
+        val navController = navHostFragment.navController
+        val configuration = AppBarConfiguration(navController.graph)
 
-        description.text = SpannableStringBuilder(intent.getStringExtra("description"))
-        title.text = SpannableStringBuilder(intent.getStringExtra("title"))
 
         val toolbar: Toolbar = findViewById(R.id.toolbarNoteInfo)
-        setSupportActionBar(toolbar)
-    }
 
-    override fun onResume() {
-        super.onResume()
-        CoroutineScope(Dispatchers.Default).launch {
-            title.doAfterTextChanged { viewModel.updateTitle(it.toString(), id) }
-            description.doAfterTextChanged { viewModel.updateDescription(it.toString(), id) }
-        }
+        NavigationUI.setupWithNavController(toolbar, navController, configuration)
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

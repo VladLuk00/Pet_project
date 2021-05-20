@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/graph_note_info"
+    app:startDestination="@id/noteInfoFragment">
+    <fragment
+        android:id="@+id/notificationDialog"
+        android:name="com.example.petproject.ui.noteInfo.dialogs.NotificationDialog"
+        android:label="NotificationDialog"
+        tools:layout="@layout/dialog_fragment_note_notification"/>
+
+
+    <fragment
+        android:id="@+id/noteInfoFragment"
+        android:name="com.example.petproject.ui.noteInfo.NoteInfoFragment"
+        tools:layout="@layout/fragment_note_info"
+        android:label="NoteInfoFragment" />
+</navigation>

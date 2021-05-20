@@ -12,13 +12,25 @@
         android:label="fragment_blank2"
         tools:layout="@layout/fragment_list_note" >
         <action
-            android:id="@+id/action_notesFragment_to_nav_graph"
-            app:destination="@id/nav_graph" />
+            android:id="@+id/action_notesFragment_to_graph_note_info"
+            app:destination="@id/graph_note_info" />
+        <argument
+            android:name="noteArg"
+            app:argType="string"
+            android:defaultValue=" "/>
+    </fragment>
+
+    <fragment android:id="@+id/myFragment" >
+        <argument
+            android:name="noteArg"
+            app:argType="string"
+            android:defaultValue=" "/>
     </fragment>
 
     <fragment
         android:id="@+id/directoriesNotesFragment"
         android:name="com.example.petproject.ui.directories.view.DirectoriesNotesFragment"
         android:label="DirectoriesNotesFragment" />
+    <include app:graph="@navigation/graph_note_info" />
 
 </navigation>

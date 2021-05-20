@@ -35,16 +35,5 @@ class NoticeViewModel @Inject constructor(val notesRepository: NotesRepository) 
         }
     }
 
-    fun updateDescription(description: String, id: Int) {
-        CoroutineScope(Dispatchers.Default).launch {
-            notesRepository.updateDescription(description, id)
-        }
 
-    }
-
-    fun updateTitle(title: String, id: Int) {
-        CoroutineScope(Dispatchers.Default).launch {
-            notesRepository.updateTitle(title, id)
-        }
-    }
 }
