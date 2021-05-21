@@ -2,6 +2,7 @@ package com.example.petproject.ui.notes.binding
 
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.petproject.ui.notes.adapters.RecycleViewItemDecoration
 
 object NoteRecycleViewBinding {
 
@@ -12,4 +13,10 @@ object NoteRecycleViewBinding {
         this.setHasFixedSize(true)
     }
 
+    @BindingAdapter(value = ["setSpaceItemDecoration"])
+    @JvmStatic
+    fun RecyclerView.setItemDecoration(space: Float) {
+        val decoration = RecycleViewItemDecoration(space.toInt())
+        this.addItemDecoration(decoration)
+    }
 }

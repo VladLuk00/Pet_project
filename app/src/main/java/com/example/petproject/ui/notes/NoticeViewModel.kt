@@ -1,10 +1,16 @@
 package com.example.petproject.ui.notes
 
+import android.app.Application
+import android.content.Context
+import android.content.Intent
+import android.util.Log
+import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.petproject.data.model.Note
 import com.example.petproject.data.repository.NotesRepository
+import com.example.petproject.ui.addNote.AddNoteActivity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -14,7 +20,7 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class NoticeViewModel @Inject constructor(val notesRepository: NotesRepository) : ViewModel() {
+class NoticeViewModel @Inject constructor(private val notesRepository: NotesRepository) : ViewModel() {
 
     var listOfNotices: MutableLiveData<List<Note>> = MutableLiveData()
 
@@ -35,5 +41,7 @@ class NoticeViewModel @Inject constructor(val notesRepository: NotesRepository) 
         }
     }
 
-
+    fun onAddButtonClick() : MutableLiveData<Boolean> {
+        return MutableLiveData(true)
+    }
 }

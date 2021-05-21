@@ -10,8 +10,7 @@ class LabelInteractor @Inject constructor(val labelDao: LabelDao) {
 
     fun getList(): Single<List<Label>> = labelDao.getListLabels()
 
-    fun insertLabel(label: Label) : Observable<Boolean> {
+    suspend fun insertLabel(label: Label) {
         labelDao.insertLabel(label)
-        return Observable.just(true)
     }
 }

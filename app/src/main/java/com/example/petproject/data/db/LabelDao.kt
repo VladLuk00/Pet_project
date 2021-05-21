@@ -1,9 +1,6 @@
 package com.example.petproject.data.db
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Transaction
+import androidx.room.*
 import com.example.petproject.data.model.Label
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
@@ -14,6 +11,6 @@ interface LabelDao {
     @Query("SELECT * FROM label_table")
     fun getListLabels() : Single<List<Label>>
 
-    @Insert
-    fun insertLabel(label: Label) : Observable<Boolean>
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertLabel(label: Label)
 }

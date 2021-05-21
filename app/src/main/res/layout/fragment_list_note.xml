@@ -12,6 +12,10 @@
         <variable
             name="viewModel"
             type="com.example.petproject.ui.notes.NoticeViewModel" />
+
+        <variable
+            name="handler"
+            type="com.example.petproject.ui.notes.binding.MyHandler" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -30,24 +34,28 @@
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="@color/teal_200"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar_list_note_id"
+            app:layout_constraintVertical_bias="0.0"
             app:setCustomAdapter="@{adapter}"
+            app:setSpaceItemDecoration="@{@dimen/recycle_view_note_space_around}"
             app:spanCount="2">
 
         </androidx.recyclerview.widget.RecyclerView>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/appCompatButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_add_24"
-            app:layout_constraintBottom_toBottomOf="@+id/recyclerView"
-            app:layout_constraintEnd_toEndOf="parent">
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="50dp"
+            android:background="@drawable/add_note"
+            android:onClick="@{(view) -> handler.onAddButtonClick(view)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" >
 
         </androidx.appcompat.widget.AppCompatButton>
 

@@ -1,9 +1,7 @@
-package com.example.petproject.ui.directories.view
+package com.example.petproject.ui.directories.view.adapters
 
-import android.content.Context
-import android.graphics.Color
 import android.text.SpannableStringBuilder
-import android.view.ContextMenu
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +13,7 @@ import com.example.petproject.data.model.Label
 class RecycleViewLabelAdapter(private var taskList: List<Label>) :
         RecyclerView.Adapter<RecycleViewLabelAdapter.ViewHolder>() {
 
-        inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+        inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             val title: TextView = view.findViewById(R.id.textViewLabelText)
 
         }
@@ -32,11 +30,12 @@ class RecycleViewLabelAdapter(private var taskList: List<Label>) :
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             holder.title.text = SpannableStringBuilder(taskList[position].name)
-
+            Log.d("tag", "onBind ${holder.title.text}")
         }
 
         fun set(list: List<Label>) {
             taskList = list
+            Log.d("tag", "set list $list")
             notifyDataSetChanged()
         }
 }

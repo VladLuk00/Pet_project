@@ -10,7 +10,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import com.example.petproject.R
+import com.example.petproject.data.model.Note
 import com.example.petproject.databinding.FragmentListNoteBinding
+import com.example.petproject.ui.addNote.AddNoteActivity
 import com.example.petproject.ui.noteInfo.NoteInfoActivity
 import com.example.petproject.ui.noteInfo.NoteInfoFragment
 import com.example.petproject.ui.noteInfo.NoteInfoFragmentDirections
@@ -39,8 +41,9 @@ class NotesFragment : Fragment(R.layout.fragment_list_note) {
             intent.putExtra("id", it.noteId)
             Log.d("tag", it.description)
             startActivity(intent)*/
-            val action = NotesFragmentDirections.actionNotesFragmentToGraphNoteInfo()
-            view?.findNavController()?.navigate(action)
+
+            /*val action = NotesFragmentDirections.actionNotesFragmentToGraphNoteInfo()
+            view?.findNavController()?.navigate(action)*/
         }
 
         binding = DataBindingUtil.inflate(layoutInflater, R.layout.fragment_list_note, container, false)
@@ -51,15 +54,20 @@ class NotesFragment : Fragment(R.layout.fragment_list_note) {
         }
 
         /*CoroutineScope(Dispatchers.Default).launch {
-            //viewModel.insert(Note(title = "title", description = "desc"))
-            viewModel.setNotices()
+            noticeViewModel.insert(Note(title = "title", description = "desc"))
+            noticeViewModel.setNotices()
         }*/
+        
         noticeViewModel.listOfNotices.observe(viewLifecycleOwner, Observer {
             it.let(notesAdapter::submitList)
         })
 
         val view = binding.root
         return view
+    }
+
+    fun onAddButtonClick(view: View) {
+        startActivity(Intent(context, AddNoteActivity::class.java))
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

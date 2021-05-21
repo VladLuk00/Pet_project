@@ -4,17 +4,13 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.petproject.R
-import com.example.petproject.data.model.Label
 import com.example.petproject.ui.directories.presenter.LabelPresenter
+import com.example.petproject.ui.directories.view.adapters.RecycleViewLabelAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import petrov.kristiyan.colorpicker.ColorPicker
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -41,14 +37,15 @@ class DirectoriesNotesFragment : Fragment(R.layout.fragment_list_directory) {
         colorPicker.show()*/
         recycleView = view.findViewById(R.id.recycleViewLabel)
         recycleView.adapter = recycleViewLabelAdapter
+        recycleView.layoutManager = LinearLayoutManager(context)
     }
 
     override fun onStart() {
         super.onStart()
 
-        CoroutineScope(Dispatchers.Main).launch {
+        /*CoroutineScope(Dispatchers.Main).launch {
             presenter.insertLabel(Label(name = "name"))
-        }
+        }*/
         presenter.updateLabelList()
     }
 }
