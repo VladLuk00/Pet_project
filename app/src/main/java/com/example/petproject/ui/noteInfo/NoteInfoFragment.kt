@@ -8,25 +8,23 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
-import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.NavigationUI
-import com.example.petproject.GraphNoteInfoDirections
 import com.example.petproject.R
+import com.example.petproject.ui.main.MainActivity
 import com.example.petproject.ui.noteInfo.dialogs.NotificationDialog
 import com.example.petproject.ui.notes.NotesFragmentArgs
-import com.example.petproject.ui.notes.NotesFragmentDirections
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import petrov.kristiyan.colorpicker.ColorPicker
+
 
 class NoteInfoFragment : Fragment(R.layout.fragment_note_info) {
 
@@ -46,12 +44,16 @@ class NoteInfoFragment : Fragment(R.layout.fragment_note_info) {
         description.text = SpannableStringBuilder(arguments?.getString("description"))
         title.text = SpannableStringBuilder(arguments?.getString("title"))
         val configuration = AppBarConfiguration(findNavController().graph)
+
         val toolbar: Toolbar = view.findViewById(R.id.toolbarNoteInfo)
+        //toolbar.inflateMenu(R.menu.menu_toolbar_note_info)
+        (activity as AppCompatActivity).setSupportActionBar(toolbar)
+        setHasOptionsMenu(true)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_toolbar_note_info, menu)
-        return super.onCreateOptionsMenu(menu, inflater)
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onResume() {
@@ -64,15 +66,15 @@ class NoteInfoFragment : Fragment(R.layout.fragment_note_info) {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        Log.d("tag", "menu")
         return when (item.itemId) {
             R.id.notification -> {
-                val notificationDialog = NotificationDialog()
-                //notificationDialog.show(supportFragmentManager, "notificationDialog")
+                findNavController().navigate(R.id.action_noteInfoFragment_to_notificationDialog)
                 true
             }
             R.id.color -> {
                 Log.d("tag", "color")
-                val colorPicker = ColorPicker(NoteInfoActivity())
+                val colorPicker = ColorPicker(activity)
                 colorPicker.show()
                 true
             }

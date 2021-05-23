@@ -4,12 +4,12 @@
     <item android:icon="@drawable/ic_notification"
         android:title="notification"
         android:id="@+id/notification"
-        app:showAsAction="ifRoom" >
+        app:showAsAction="always" >
 
     </item>
 
     <item android:title="color"
-        android:id="@+id/b"
+        android:id="@+id/color"
         app:showAsAction="always"
         android:icon="@drawable/ic_color_24">
 

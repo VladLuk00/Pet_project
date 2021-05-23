@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/graph_note_info"
     app:startDestination="@id/noteInfoFragment">
-    <fragment
+    <dialog
         android:id="@+id/notificationDialog"
         android:name="com.example.petproject.ui.noteInfo.dialogs.NotificationDialog"
         android:label="NotificationDialog"
         tools:layout="@layout/dialog_fragment_note_notification">
-    </fragment>
+    </dialog>
 
     <fragment
         android:id="@+id/noteInfoFragment"
@@ -21,6 +21,9 @@
             android:name="noteArg"
             app:argType="string"
             android:defaultValue="default"/>
+        <action
+            android:id="@+id/action_noteInfoFragment_to_notificationDialog"
+            app:destination="@id/notificationDialog" />
     </fragment>
 
     <action android:id="@+id/action_global_noteInfoFragment" app:destination="@id/noteInfoFragment" />
