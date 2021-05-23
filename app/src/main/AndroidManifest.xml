@@ -25,6 +25,9 @@
         <activity android:name=".ui.noteInfo.NoteInfoActivity" >
 
         </activity>
+
+        <uses-library android:name="android.test.runner"
+            android:required="false" />
     </application>
 
 </manifest>

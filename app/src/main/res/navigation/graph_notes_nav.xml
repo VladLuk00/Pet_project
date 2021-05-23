@@ -17,6 +17,9 @@
         <argument
             android:name="noteArg"
             app:argType="string" />
+        <action
+            android:id="@+id/action_notesFragment_to_addNoteFragment"
+            app:destination="@id/addNoteFragment" />
 
     </fragment>
 
@@ -27,5 +30,10 @@
         android:label="DirectoriesNotesFragment" />
 
     <include app:graph="@navigation/graph_note_info" />
+
+    <fragment
+        android:id="@+id/addNoteFragment"
+        android:name="com.example.petproject.ui.addNote.AddNoteFragment"
+        android:label="AddNoteFragment" />
 
 </navigation>

@@ -40,8 +40,4 @@ class NoticeViewModel @Inject constructor(private val notesRepository: NotesRepo
             notesRepository.delete()
         }
     }
-
-    fun onAddButtonClick() : MutableLiveData<Boolean> {
-        return MutableLiveData(true)
-    }
 }

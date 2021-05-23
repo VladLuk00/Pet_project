@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import com.example.petproject.GraphNoteInfoDirections
 import com.example.petproject.R
 import com.example.petproject.data.model.Note
 import com.example.petproject.databinding.FragmentListNoteBinding
@@ -17,6 +19,7 @@ import com.example.petproject.ui.noteInfo.NoteInfoActivity
 import com.example.petproject.ui.noteInfo.NoteInfoFragment
 import com.example.petproject.ui.noteInfo.NoteInfoFragmentDirections
 import com.example.petproject.ui.notes.adapters.NewAdapter
+import com.example.petproject.ui.notes.binding.MyHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -41,16 +44,22 @@ class NotesFragment : Fragment(R.layout.fragment_list_note) {
             intent.putExtra("id", it.noteId)
             Log.d("tag", it.description)
             startActivity(intent)*/
-
-            /*val action = NotesFragmentDirections.actionNotesFragmentToGraphNoteInfo()
-            view?.findNavController()?.navigate(action)*/
+            val bundle: Bundle = Bundle()
+            bundle.putString("description", it.description)
+            bundle.putString("title", it.title)
+            bundle.putInt("id", it.noteId)
+            //findNavController().setGraph(R.navigation.graph_note_info, bundle)
+            view?.findNavController()?.navigate(R.id.graph_note_info, bundle)
         }
+
+        val myhandler = MyHandler()
 
         binding = DataBindingUtil.inflate(layoutInflater, R.layout.fragment_list_note, container, false)
         binding.apply {
             viewModel = noticeViewModel
             lifecycleOwner = this@NotesFragment
             adapter = notesAdapter
+            handler = myhandler
         }
 
         /*CoroutineScope(Dispatchers.Default).launch {
@@ -62,28 +71,14 @@ class NotesFragment : Fragment(R.layout.fragment_list_note) {
             it.let(notesAdapter::submitList)
         })
 
+        noticeViewModel.setNotices()
+
         val view = binding.root
         return view
     }
 
-    fun onAddButtonClick(view: View) {
-        startActivity(Intent(context, AddNoteActivity::class.java))
-    }
-
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_toolbar_list_note, menu)
-        return super.onCreateOptionsMenu(menu, inflater)
-    }
-
-
-    override fun onStart() {
-        super.onStart()
-        CoroutineScope(Job()).launch(Dispatchers.Default) {
-            noticeViewModel.setNotices()
-            launch(Dispatchers.Main) {
-                binding.adapter?.notifyDataSetChanged()
-                Log.d("tag", "changes")
-            }
-        }
+        super.onCreateOptionsMenu(menu, inflater)
     }
 }

@@ -32,6 +32,6 @@ class NotesRepository @Inject constructor(val noteDao: NoteDao) {
     }
 
     suspend fun updateTitle(title: String, id: Int) {
-        noteDao.updateDescription(title, id)
+        noteDao.updateTitle(title, id)
     }
 }

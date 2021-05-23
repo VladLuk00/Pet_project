@@ -33,12 +33,8 @@ class NewAdapter(val onItemClick: (Note) -> Unit) : ListAdapter<Note, NewAdapter
 
 
     companion object: DiffUtil.ItemCallback<Note>() {
-        override fun areItemsTheSame(oldItem: Note, newItem: Note): Boolean {
-            return true
-        }
+        override fun areItemsTheSame(oldItem: Note, newItem: Note): Boolean = oldItem === newItem
 
-        override fun areContentsTheSame(oldItem: Note, newItem: Note): Boolean {
-            return true
-        }
+        override fun areContentsTheSame(oldItem: Note, newItem: Note): Boolean = oldItem == newItem
     }
 }
