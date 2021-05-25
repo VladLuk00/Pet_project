@@ -46,7 +46,7 @@
             app:layout_constraintEnd_toEndOf="@+id/recyclerView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar_list_note_id"
-            app:newUrl="@{}" />
+            app:newUrl="@{`d`}" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
