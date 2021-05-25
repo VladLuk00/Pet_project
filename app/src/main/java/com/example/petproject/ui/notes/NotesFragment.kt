@@ -4,12 +4,18 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.ImageView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
+import com.bumptech.glide.signature.MediaStoreSignature
+import com.bumptech.glide.signature.ObjectKey
 import com.example.petproject.GraphNoteInfoDirections
 import com.example.petproject.R
 import com.example.petproject.data.model.Note
@@ -20,6 +26,7 @@ import com.example.petproject.ui.noteInfo.NoteInfoFragment
 import com.example.petproject.ui.noteInfo.NoteInfoFragmentDirections
 import com.example.petproject.ui.notes.adapters.NewAdapter
 import com.example.petproject.ui.notes.binding.MyHandler
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -27,16 +34,19 @@ import kotlinx.coroutines.launch
 import kotlin.math.log
 
 
+@AndroidEntryPoint
 class NotesFragment : Fragment(R.layout.fragment_list_note) {
 
-    private val noticeViewModel by activityViewModels<NoticeViewModel>()
+    val noticeViewModel by hiltNavGraphViewModels<NoticeViewModel>(R.id.nav_graph)
     lateinit var binding: FragmentListNoteBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        Log.d("tag", "onCreateView")
+
+        //setBackgroundImage()
+
         val notesAdapter = NewAdapter {
             /*val intent = Intent(context, NoteInfoFragment::class.java)
             intent.putExtra("description", it.description)
@@ -80,5 +90,13 @@ class NotesFragment : Fragment(R.layout.fragment_list_note) {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_toolbar_list_note, menu)
         super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    private fun setBackgroundImage() {
+        val imageContainer : ImageView? = binding.root.findViewById(R.id.pictureContainer)
+        val url = "https://picsum.photos/${imageContainer?.width}/${imageContainer?.height}/?random"
+        Glide.with(this)
+            .load(url)
+            .into(imageContainer!!)
     }
 }

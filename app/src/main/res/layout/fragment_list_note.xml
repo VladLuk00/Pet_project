@@ -16,7 +16,15 @@
         <variable
             name="handler"
             type="com.example.petproject.ui.notes.binding.MyHandler" />
+
+        <variable
+            name="view"
+            type="String" />
     </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -30,6 +38,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:id="@+id/pictureContainer"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/recyclerView"
+            app:layout_constraintEnd_toEndOf="@+id/recyclerView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_list_note_id"
+            app:newUrl="@{}" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
@@ -42,10 +60,12 @@
             app:layout_constraintTop_toBottomOf="@+id/toolbar_list_note_id"
             app:layout_constraintVertical_bias="0.0"
             app:setCustomAdapter="@{adapter}"
+            android:alpha="0.60"
             app:setSpaceItemDecoration="@{@dimen/recycle_view_note_space_around}"
             app:spanCount="2">
 
         </androidx.recyclerview.widget.RecyclerView>
+
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/appCompatButton"
@@ -59,6 +79,8 @@
 
         </androidx.appcompat.widget.AppCompatButton>
 
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    </FrameLayout>
 </layout>

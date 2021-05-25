@@ -1,7 +1,9 @@
 package com.example.petproject.ui.notes.binding
 
+import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.petproject.ui.notes.adapters.RecycleViewItemDecoration
 
 object NoteRecycleViewBinding {
@@ -19,4 +21,11 @@ object NoteRecycleViewBinding {
         val decoration = RecycleViewItemDecoration(space.toInt())
         this.addItemDecoration(decoration)
     }
+
+    @BindingAdapter(value = ["app:newUrl"])
+    @JvmStatic
+    fun setNewUrl(view: ImageView) {
+        Glide.with(view).load("").into(view)
+    }
+
 }

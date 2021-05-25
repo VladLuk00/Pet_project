@@ -30,7 +30,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="title" />
+                tools:text="title"
+                android:textColor="@color/black"/>
 
             <TextView
                 android:id="@+id/textView2"
@@ -42,7 +43,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView"
-                tools:text="description" />
+                tools:text="description"
+                android:textColor="@color/black"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
