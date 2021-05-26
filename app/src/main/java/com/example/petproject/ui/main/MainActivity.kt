@@ -45,7 +45,15 @@ class MainActivity : AppCompatActivity() {
         return NavController.OnDestinationChangedListener { _, destination, _ ->
             when(destination.id) {
                 R.id.noteInfoFragment -> hideBottomNav()
+                R.id.addNoteFragment -> hideBottomNav()
+                R.id.directoriesNotesFragment -> showBottomNav()
+                R.id.notesFragment -> showBottomNav()
             }
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        //navController.popBackStack()
     }
 }

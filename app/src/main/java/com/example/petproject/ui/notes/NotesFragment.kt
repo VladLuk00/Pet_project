@@ -1,43 +1,25 @@
 package com.example.petproject.ui.notes
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.ImageView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.bumptech.glide.signature.MediaStoreSignature
-import com.bumptech.glide.signature.ObjectKey
-import com.example.petproject.GraphNoteInfoDirections
 import com.example.petproject.R
-import com.example.petproject.data.model.Note
 import com.example.petproject.databinding.FragmentListNoteBinding
-import com.example.petproject.ui.addNote.AddNoteActivity
-import com.example.petproject.ui.noteInfo.NoteInfoActivity
-import com.example.petproject.ui.noteInfo.NoteInfoFragment
-import com.example.petproject.ui.noteInfo.NoteInfoFragmentDirections
 import com.example.petproject.ui.notes.adapters.NewAdapter
 import com.example.petproject.ui.notes.binding.MyHandler
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
-import kotlin.math.log
 
 
 @AndroidEntryPoint
 class NotesFragment : Fragment(R.layout.fragment_list_note) {
 
-    val noticeViewModel by hiltNavGraphViewModels<NoticeViewModel>(R.id.nav_graph)
+    val noticeViewModel by hiltNavGraphViewModels<NotesViewModel>(R.id.nav_graph)
     lateinit var binding: FragmentListNoteBinding
 
     override fun onCreateView(
@@ -84,6 +66,7 @@ class NotesFragment : Fragment(R.layout.fragment_list_note) {
         noticeViewModel.setNotices()
 
         val view = binding.root
+
         return view
     }
 

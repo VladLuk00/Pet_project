@@ -20,7 +20,7 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class NoticeViewModel @Inject constructor(private val notesRepository: NotesRepository) : ViewModel() {
+class NotesViewModel @Inject constructor(private val notesRepository: NotesRepository) : ViewModel() {
 
     var listOfNotices: MutableLiveData<List<Note>> = MutableLiveData()
 
@@ -30,7 +30,7 @@ class NoticeViewModel @Inject constructor(private val notesRepository: NotesRepo
 
     fun setNotices() {
         CoroutineScope(Dispatchers.Main).launch {
-            val _listOfNoties = notesRepository.listOfNotes()
+            val _listOfNoties = notesRepository.listOfNotes().reversed()
             listOfNotices.value = _listOfNoties
         }
     }

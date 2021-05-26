@@ -10,7 +10,6 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.resetMain
-import kotlinx.coroutines.test.runBlockingTest
 import kotlinx.coroutines.test.setMain
 import org.junit.*
 import org.mockito.BDDMockito.given
@@ -21,7 +20,7 @@ import org.mockito.Mockito.mock
 class NotesViewModelTest {
 
     private lateinit var noteRepository: NotesRepository
-    private lateinit var noticeViewModel: NoticeViewModel
+    private lateinit var notesViewModel: NotesViewModel
     private var noteDao: NoteDao = mock(NoteDao::class.java)
     private var testCoroutineDispatcher = TestCoroutineDispatcher()
 
@@ -32,7 +31,7 @@ class NotesViewModelTest {
     @Before
     fun setUp() {
         noteRepository = NotesRepository(noteDao)
-        noticeViewModel = NoticeViewModel(noteRepository)
+        notesViewModel = NotesViewModel(noteRepository)
 
         Dispatchers.setMain(testCoroutineDispatcher)
     }
@@ -46,8 +45,8 @@ class NotesViewModelTest {
     @Test
     fun `is listOfNotices after trigger setNotes() return list`() = runBlocking {
         given(noteRepository.listOfNotes()).willReturn(MockUtil.getListOfNotes())
-        noticeViewModel.setNotices()
-        val actual = noticeViewModel.listOfNotices.blockingObserve()
+        notesViewModel.setNotices()
+        val actual = notesViewModel.listOfNotices.blockingObserve()
         Assert.assertEquals(MockUtil.getListOfNotes(), actual)
     }
 }

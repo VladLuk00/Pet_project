@@ -23,7 +23,7 @@ import org.mockito.Mockito
 class NoticeViewModelTest : TestCase() {
 
     private lateinit var noteRepository: NotesRepository
-    private lateinit var noticeViewModel: NoticeViewModel
+    private lateinit var notesViewModel: NotesViewModel
     private var noteDao: NoteDao = Mockito.mock(NoteDao::class.java)
 
     private var testCoroutineDispatcher = TestCoroutineDispatcher()
@@ -35,7 +35,7 @@ class NoticeViewModelTest : TestCase() {
     @Before
     fun prepare() {
         noteRepository = NotesRepository(noteDao)
-        noticeViewModel = NoticeViewModel(noteRepository)
+        notesViewModel = NotesViewModel(noteRepository)
 
         Dispatchers.setMain(testCoroutineDispatcher)
     }
@@ -49,8 +49,8 @@ class NoticeViewModelTest : TestCase() {
     @Test
     fun set() = runBlocking {
         BDDMockito.given(noteRepository.listOfNotes()).willReturn(MockUtil.getListOfNotes())
-        noticeViewModel.setNotices()
-        val actual = noticeViewModel.listOfNotices.blockingObserve()
+        notesViewModel.setNotices()
+        val actual = notesViewModel.listOfNotices.blockingObserve()
         Assert.assertEquals(MockUtil.getListOfNotes(), actual)
     }
 }

@@ -18,7 +18,7 @@
     </style>
 
     <style name="HeaderBar">
-        <item name="android:background">#303F9F</item>
+        <item name="android:background">@color/white</item>
     </style>
 
 </resources>

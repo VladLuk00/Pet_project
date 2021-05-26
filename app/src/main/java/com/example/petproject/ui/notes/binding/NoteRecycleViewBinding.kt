@@ -6,6 +6,7 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.example.petproject.ui.notes.adapters.RecycleViewItemDecoration
 
@@ -34,7 +35,7 @@ object NoteRecycleViewBinding {
         Log.d("tag", url)
         Glide.with(this)
             .load(url)
-            .skipMemoryCache(true)
+            //.diskCacheStrategy(DiskCacheStrategy.NONE)
             .centerCrop()
             .into(this)
     }

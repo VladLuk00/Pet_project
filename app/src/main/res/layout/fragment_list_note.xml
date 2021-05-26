@@ -11,7 +11,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.petproject.ui.notes.NoticeViewModel" />
+            type="com.example.petproject.ui.notes.NotesViewModel" />
 
         <variable
             name="handler"
