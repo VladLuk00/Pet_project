@@ -52,6 +52,7 @@ class NotesFragment : Fragment(R.layout.fragment_list_note) {
             lifecycleOwner = this@NotesFragment
             adapter = notesAdapter
             handler = myhandler
+
         }
 
         /*CoroutineScope(Dispatchers.Default).launch {
@@ -82,4 +83,6 @@ class NotesFragment : Fragment(R.layout.fragment_list_note) {
             .load(url)
             .into(imageContainer!!)
     }
+
+
 }

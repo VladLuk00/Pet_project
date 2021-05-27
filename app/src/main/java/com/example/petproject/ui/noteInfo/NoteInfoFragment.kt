@@ -65,7 +65,6 @@ class NoteInfoFragment : Fragment(R.layout.fragment_note_info) {
 
     override fun onResume() {
         super.onResume()
-        Log.d("tag", "onResume")
         CoroutineScope(Dispatchers.Default).launch {
             title.doAfterTextChanged { viewModel.updateTitle(it.toString(), noteId) }
             description.doAfterTextChanged { viewModel.updateDescription(it.toString(), noteId) }

@@ -20,6 +20,7 @@
         <variable
             name="view"
             type="String" />
+
     </data>
 
     <FrameLayout
@@ -62,6 +63,7 @@
             app:setCustomAdapter="@{adapter}"
             android:alpha="0.60"
             app:setSpaceItemDecoration="@{@dimen/recycle_view_note_space_around}"
+            android:longClickable="true"
             app:spanCount="2">
 
         </androidx.recyclerview.widget.RecyclerView>
