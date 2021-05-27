@@ -2,7 +2,7 @@ package com.example.petproject.utils
 
 import com.example.petproject.data.model.Note
 
-object MockUtil {
+object CustomMockUtil {
 
     fun getNote() = Note(description = "desc", title = "title")
 
