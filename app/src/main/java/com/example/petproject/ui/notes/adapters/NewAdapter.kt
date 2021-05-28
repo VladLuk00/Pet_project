@@ -12,25 +12,28 @@ import com.example.petproject.data.model.Note
 import com.example.petproject.databinding.RecycleViewItemNoteBinding
 import com.example.petproject.ui.main.MainActivity
 import com.example.petproject.ui.notes.NotesFragment
+import com.example.petproject.ui.notes.OnLongClickListNotesItem
 
-class NewAdapter(val onItemClick: (Note) -> Unit) :
+class NewAdapter(
+    val onLongClickListNotesItem: OnLongClickListNotesItem,
+    val onItemClick: (Note) -> Unit
+) :
     ListAdapter<Note, NewAdapter.NotesViewHolder>(Companion) {
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotesViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = RecycleViewItemNoteBinding.inflate(layoutInflater)
 
         return NotesViewHolder(binding)
-    }
 
+    }
 
     override fun onBindViewHolder(holder: NotesViewHolder, position: Int) {
         val currentUser = getItem(position)
         holder.binding.note = currentUser
         holder.binding.executePendingBindings()
         holder.itemView.setOnClickListener { onItemClick(currentUser) }
-        holder.itemView.setOnLongClickListener { onLongClick(it); true }
+        holder.itemView.setOnLongClickListener { onLongClickListNotesItem.onLongClick(); true }
     }
 
     class NotesViewHolder(val binding: RecycleViewItemNoteBinding) :
@@ -61,6 +64,6 @@ class NewAdapter(val onItemClick: (Note) -> Unit) :
                 TODO("Not yet implemented")
             }
         }
-        (view.context as Activity).startActionMode(contextualMenuCallback)
+        (view.context as MainActivity).startActionMode(contextualMenuCallback)
     }
 }

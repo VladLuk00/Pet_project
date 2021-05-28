@@ -39,6 +39,5 @@ class NotesViewModel @Inject constructor(private val notesRepository: NotesRepos
         CoroutineScope(Job()).launch(Dispatchers.Default) {
             notesRepository.delete()
         }
-
     }
 }
