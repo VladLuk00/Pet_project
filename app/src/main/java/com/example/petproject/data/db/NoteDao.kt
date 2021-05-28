@@ -14,7 +14,7 @@ interface NoteDao {
     suspend fun getNotes(): List<Note>
 
     @Delete
-   fun deleteNote(note: Note)
+    fun deleteNote(note: Note)
 
     @Insert
     fun insertNote(vararg note: Note)
@@ -27,4 +27,6 @@ interface NoteDao {
 
     @Query("UPDATE note_table SET title = :title WHERE noteId = :id")
     suspend fun updateTitle(title: String, id: Int)
+
+
 }

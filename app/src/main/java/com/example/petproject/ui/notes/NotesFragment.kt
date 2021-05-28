@@ -18,6 +18,11 @@ import com.example.petproject.ui.notes.adapters.NewAdapter
 import com.example.petproject.ui.notes.binding.MyHandler
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.appcompat.view.ActionMode
+import com.example.petproject.data.model.Note
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import okhttp3.internal.notify
 
 
 @AndroidEntryPoint
@@ -85,26 +90,32 @@ class NotesFragment : Fragment(R.layout.fragment_list_note), OnLongClickListNote
     }
 
 
-    override fun onLongClick() {
+    override fun onLongClick(note: Note) {
         val callbackList = object : ActionMode.Callback {
             override fun onCreateActionMode(mode: ActionMode?, menu: Menu?): Boolean {
-                Log.d("tag", "action mode")
                 mode?.menuInflater?.inflate(R.menu.menu_contextual_toolbar_list_note, menu)
                 return true
             }
 
             override fun onPrepareActionMode(mode: ActionMode?, menu: Menu?): Boolean {
-                Log.d("tag", "action mode")
                 return true
             }
 
             override fun onActionItemClicked(mode: ActionMode?, item: MenuItem?): Boolean {
-                Log.d("tag", "action mode")
-                return true
+                return when(item?.itemId) {
+                    R.id.list_contextual_delete -> {
+                        CoroutineScope(Dispatchers.Default).launch {
+                            noticeViewModel.deleteNote(note)
+                        }
+                        noticeViewModel.setNotices()
+                        true
+                    }
+                    else -> false
+                }
             }
 
             override fun onDestroyActionMode(mode: ActionMode?) {
-                Log.d("tag", "action mode")
+
             }
         }
         (activity as AppCompatActivity).startSupportActionMode(callbackList)

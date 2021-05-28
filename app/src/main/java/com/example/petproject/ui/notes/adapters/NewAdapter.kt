@@ -33,7 +33,7 @@ class NewAdapter(
         holder.binding.note = currentUser
         holder.binding.executePendingBindings()
         holder.itemView.setOnClickListener { onItemClick(currentUser) }
-        holder.itemView.setOnLongClickListener { onLongClickListNotesItem.onLongClick(); true }
+        holder.itemView.setOnLongClickListener { onLongClickListNotesItem.onLongClick(currentUser); true }
     }
 
     class NotesViewHolder(val binding: RecycleViewItemNoteBinding) :
@@ -43,27 +43,9 @@ class NewAdapter(
         override fun areItemsTheSame(oldItem: Note, newItem: Note): Boolean = oldItem === newItem
 
         override fun areContentsTheSame(oldItem: Note, newItem: Note): Boolean = oldItem == newItem
-    }
-
-    fun onLongClick(view: View) {
-        val contextualMenuCallback = object : ActionMode.Callback {
-            override fun onCreateActionMode(mode: ActionMode?, menu: Menu?): Boolean {
-                mode?.menuInflater?.inflate(R.menu.menu_contextual_toolbar_list_note, menu)
-                return true
-            }
-
-            override fun onPrepareActionMode(mode: ActionMode?, menu: Menu?): Boolean {
-                TODO("Not yet implemented")
-            }
-
-            override fun onActionItemClicked(mode: ActionMode?, item: MenuItem?): Boolean {
-                TODO("Not yet implemented")
-            }
-
-            override fun onDestroyActionMode(mode: ActionMode?) {
-                TODO("Not yet implemented")
-            }
+        override fun getChangePayload(oldItem: Note, newItem: Note): Any? {
+            Log.d("tag", "getChanged")
+            return null
         }
-        (view.context as MainActivity).startActionMode(contextualMenuCallback)
     }
 }

@@ -2,6 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:title="delete"
+        android:id="@+id/list_contextual_delete"
         android:icon="@drawable/ic_delete_24"
         app:showAsAction="always"/>
 </menu>
