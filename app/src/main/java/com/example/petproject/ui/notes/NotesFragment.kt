@@ -34,7 +34,6 @@ class NotesFragment : Fragment(R.layout.fragment_list_note), OnLongClickListNote
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -108,6 +107,7 @@ class NotesFragment : Fragment(R.layout.fragment_list_note), OnLongClickListNote
                             noticeViewModel.deleteNote(note)
                         }
                         noticeViewModel.setNotices()
+                        mode?.finish()
                         true
                     }
                     else -> false

@@ -1,5 +1,7 @@
 package com.example.petproject.ui.noteInfo
 
+import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.util.Log
@@ -11,6 +13,7 @@ import android.widget.EditText
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.compose.ui.graphics.Color
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -31,6 +34,8 @@ class NoteInfoFragment : Fragment(R.layout.fragment_note_info) {
 
     private val viewModel by activityViewModels<NoteInfoViewModel>()
 
+    lateinit var toolbar: Toolbar
+
     lateinit var description: EditText
     lateinit var title: EditText
     var noteId: Int = 0
@@ -46,7 +51,7 @@ class NoteInfoFragment : Fragment(R.layout.fragment_note_info) {
         title.text = SpannableStringBuilder(arguments?.getString("title"))
         val configuration = AppBarConfiguration(findNavController().graph)
 
-        val toolbar: Toolbar = view.findViewById(R.id.toolbarNoteInfo)
+        toolbar = view.findViewById(R.id.toolbarNoteInfo)
         //toolbar.inflateMenu(R.menu.menu_toolbar_note_info)
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
         setHasOptionsMenu(true)
@@ -82,6 +87,15 @@ class NoteInfoFragment : Fragment(R.layout.fragment_note_info) {
                 Log.d("tag", "color")
                 val colorPicker = ColorPicker(activity)
                 colorPicker.show()
+                colorPicker.setOnChooseColorListener(object : ColorPicker.OnChooseColorListener {
+                    override fun onChooseColor(position: Int, color: Int) {
+                        toolbar.background = ColorDrawable(color)
+                    }
+
+                    override fun onCancel() {
+                        TODO("Not yet implemented")
+                    }
+                })
                 true
             }
             else -> super.onOptionsItemSelected(item)
