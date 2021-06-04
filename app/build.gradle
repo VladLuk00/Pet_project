@@ -6,6 +6,7 @@ plugins {
     id 'androidx.navigation.safeargs'
     id 'com.google.gms.google-services'
     id 'com.google.firebase.crashlytics'
+    id 'kotlinx-serialization'
 }
 
 ext {
@@ -104,6 +105,9 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    //kotlin-serialization
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.1")
 
     //fragment
     implementation 'androidx.fragment:fragment-ktx:1.3.4'

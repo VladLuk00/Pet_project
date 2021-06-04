@@ -9,6 +9,9 @@
         android:name="com.example.petproject.ui.noteInfo.dialogs.NotificationDialog"
         android:label="NotificationDialog"
         tools:layout="@layout/dialog_fragment_note_notification">
+        <action
+            android:id="@+id/action_notificationDialog_to_datePickerFragmentDialog"
+            app:destination="@id/datePickerFragmentDialog" />
     </dialog>
 
     <fragment
@@ -27,4 +30,12 @@
     </fragment>
 
     <action android:id="@+id/action_global_noteInfoFragment" app:destination="@id/noteInfoFragment" />
+    <fragment
+        android:id="@+id/timePickerDialogFragment"
+        android:name="com.example.petproject.ui.noteInfo.dialogs.TimePickerDialog"
+        android:label="TimePickerDialogFragment" />
+    <fragment
+        android:id="@+id/datePickerFragmentDialog"
+        android:name="com.example.petproject.ui.noteInfo.dialogs.DatePickerFragmentDialog"
+        android:label="DatePickerFragmentDialog" />
 </navigation>

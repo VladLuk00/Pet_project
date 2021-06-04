@@ -1,15 +1,19 @@
 package com.example.petproject.di
 
 import android.content.Context
+import android.os.Bundle
+import androidx.fragment.app.Fragment
 import androidx.room.Room
 import com.example.petproject.data.db.NotesDatabase
 import com.example.petproject.data.model.Label
 import com.example.petproject.ui.directories.view.adapters.RecycleViewLabelAdapter
+import com.example.petproject.ui.noteInfo.NoteInfoFragment
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Qualifier
 import javax.inject.Singleton
 
 @Module
@@ -32,8 +36,5 @@ object AppModule {
     @Provides
     @Singleton
     fun provideRecycleViewLabelAdapter() = RecycleViewLabelAdapter(listOf(Label(name = "di")))
-
-    @Provides
-    fun provideContext(@ApplicationContext context: Context) : Context = context
 
 }
