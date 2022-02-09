@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import com.example.petproject.data.db.NoteDao
 import com.example.petproject.data.model.Note
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -38,4 +39,14 @@ class NotesRepository @Inject constructor(val noteDao: NoteDao) {
     suspend fun updateTitle(title: String, id: Int) {
         noteDao.updateTitle(title, id)
     }
+
+    suspend fun updateDate(year: Int, month: Int, day: Int, id: Int) {
+            noteDao.updateDate(year, month, day, id)
+    }
+
+    suspend fun updateTime(hour: Int, minute: Int, id: Int) {
+        noteDao.updateTime(hour, minute, id)
+    }
+
+    suspend fun getNote(id: Int) = noteDao.getNoteById(id)
 }

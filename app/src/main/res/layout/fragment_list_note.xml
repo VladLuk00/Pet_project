@@ -75,7 +75,7 @@
             android:layout_height="50dp"
             android:layout_marginBottom="50dp"
             android:background="@drawable/add_note"
-            android:onClick="@{(view) -> handler.onAddButtonClick(view)}"
+            android:onClick="@{(vie) -> handler.onAddButtonClick(vie)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" >
 

@@ -29,19 +29,22 @@ import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class NotesFragment : BaseFragment<FragmentListNoteBinding>(R.layout.fragment_list_note), OnLongClickListNotesItem {
+class NotesFragment(override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentListNoteBinding = FragmentListNoteBinding::inflate) :
+    BaseFragment<FragmentListNoteBinding>(), OnLongClickListNotesItem {
 
     val noticeViewModel by hiltNavGraphViewModels<NotesViewModel>(R.id.nav_graph)
-    lateinit var toolbar: Toolbar
-    @Inject lateinit var myHandler: MyHandler
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    @Inject
+    lateinit var myHandler: MyHandler
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        noticeViewModel.setNotices()
+
+    }
+
+    override fun init() {
         val notesAdapter = NewAdapter(this) {
             val bundle: Bundle = Bundle().apply {
                 putString("description", it.description)
@@ -62,16 +65,10 @@ class NotesFragment : BaseFragment<FragmentListNoteBinding>(R.layout.fragment_li
             it.let(notesAdapter::submitList)
         })
 
-        noticeViewModel.setNotices()
-
-        toolbar = binding.toolbarListNoteId as Toolbar
+        val toolbar = binding.toolbarListNoteId as Toolbar
         toolbar.inflateMenu(R.menu.menu_toolbar_note_info)
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
         setHasOptionsMenu(true)
-    }
-
-    override fun init() {
-
     }
 
 
@@ -101,7 +98,7 @@ class NotesFragment : BaseFragment<FragmentListNoteBinding>(R.layout.fragment_li
             }
 
             override fun onActionItemClicked(mode: ActionMode?, item: MenuItem?): Boolean {
-                return when(item?.itemId) {
+                return when (item?.itemId) {
                     R.id.list_contextual_delete -> {
                         CoroutineScope(Dispatchers.Default).launch {
                             noticeViewModel.deleteNote(note)

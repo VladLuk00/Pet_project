@@ -4,13 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.animation.core.withInfiniteAnimationFrameMillis
-import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
+import androidx.fragment.app.DialogFragment
 import androidx.viewbinding.ViewBinding
 
-abstract class BaseFragment<ViewBind : ViewBinding>() : Fragment() {
-
+abstract class BaseFragmentDialog<ViewBind : ViewBinding> : DialogFragment() {
     private var _binding: ViewBinding? = null
     abstract val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> ViewBind
     protected val binding
