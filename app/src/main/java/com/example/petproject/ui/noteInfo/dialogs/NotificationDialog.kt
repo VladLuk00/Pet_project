@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import com.example.petproject.R
 import com.example.petproject.data.preferences.PreferencesHelper
 import com.example.petproject.databinding.DialogFragmentNoteNotificationBinding
 import com.example.petproject.ui.base.BaseFragmentDialog
@@ -44,6 +46,7 @@ class NotificationDialog(
         binding.apply {
             buttonCancelNotificationChanges.setOnClickListener { dismiss() }
             buttonSaveNotificationChanges.setOnClickListener { dismiss() }
+            notificationMap.setOnClickListener { findNavController().navigate(R.id.to_mapsFragment)}
             notificationTime.setOnClickListener { setTimePicker() }
             notificationDate.setOnClickListener {
                 val calendar: Calendar = Calendar.getInstance(TimeZone.getDefault())

@@ -59,8 +59,8 @@ class MainActivity : AppCompatActivity(){
             when(destination.id) {
                 R.id.noteInfoFragment -> hideBottomNav()
                 R.id.addNoteFragment -> hideBottomNav()
-                R.id.directoriesNotesFragment -> showBottomNav()
-                R.id.notesFragment -> showBottomNav()
+                R.id.directoriesNotesFragment -> hideBottomNav()/*showBottomNav()*/
+                R.id.notesFragment -> hideBottomNav()/*showBottomNav()*/
             }
         }
     }

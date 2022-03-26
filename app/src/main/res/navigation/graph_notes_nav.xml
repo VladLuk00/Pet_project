@@ -36,4 +36,15 @@
         android:name="com.example.petproject.ui.addNote.AddNoteFragment"
         android:label="AddNoteFragment" />
 
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.example.petproject.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" />
+
+    <action
+        android:id="@+id/to_mapsFragment"
+        app:destination="@id/mapsFragment"/>
+
+
 </navigation>

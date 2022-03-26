@@ -46,19 +46,11 @@ class NoteInfoFragment(
         super.onCreateOptionsMenu(menu, inflater)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
-    }
-
     override fun onResume() {
         super.onResume()
         CoroutineScope(Dispatchers.Default).launch {
-            binding.noteInfoTitleId.doAfterTextChanged { viewModel.updateTitle(it.toString(), noteId) }
-            binding.noteInfoDescriptionId.doAfterTextChanged { viewModel.updateDescription(it.toString(), noteId) }
+            binding.noteInfo.noteInfoTitleId.doAfterTextChanged { viewModel.updateTitle(it.toString(), noteId) }
+            binding.noteInfo.noteInfoDescriptionId.doAfterTextChanged { viewModel.updateDescription(it.toString(), noteId) }
         }
     }
 
@@ -94,8 +86,8 @@ class NoteInfoFragment(
 
     override fun init() {
         noteId = arguments?.getInt("id")!!
-        binding.noteInfoDescriptionId.text = SpannableStringBuilder(arguments?.getString("description"))
-        binding.noteInfoTitleId.text = SpannableStringBuilder(arguments?.getString("title"))
+        binding.noteInfo.noteInfoDescriptionId.text = SpannableStringBuilder(arguments?.getString("description"))
+        binding.noteInfo.noteInfoTitleId.text = SpannableStringBuilder(arguments?.getString("title"))
         val configuration = AppBarConfiguration(findNavController().graph)
 
         //toolbar.inflateMenu(R.menu.menu_toolbar_note_info)
