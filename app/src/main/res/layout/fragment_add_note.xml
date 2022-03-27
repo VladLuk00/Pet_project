@@ -8,7 +8,7 @@
         android:layout_height="match_parent">
 
         <include
-            android:id="@+id/include2"
+            android:id="@+id/toolbar"
             layout="@layout/toolbar_note_info"
             android:layout_width= "match_parent"
             android:layout_height="?attr/actionBarSize"
@@ -18,31 +18,17 @@
 
         </include>
 
-        <EditText
-            android:id="@+id/title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/note_title_hint"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/include2"
-            android:gravity="top|start"
-            android:inputType="textCapSentences|textNoSuggestions|textMultiLine"/>
-
-        <EditText
-            android:id="@+id/description"
+        <include
+            android:id="@+id/note_info"
+            layout="@layout/note_item"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@android:color/transparent"
-            android:hint="@string/note_description_hint"
-            android:singleLine="false"
-            android:gravity="top"
-            android:inputType="textMultiLine"
-            android:layout_marginEnd="5dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title"
-/>
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:layout_constraintVertical_bias="0.0" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

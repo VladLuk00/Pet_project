@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -22,23 +24,28 @@ class AddNoteFragment(
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentAddNoteBinding = FragmentAddNoteBinding::inflate
 ) : BaseFragment<FragmentAddNoteBinding>() {
 
-    val addNoteViewModel by activityViewModels<AddNoteViewModel>()
-
-    private fun onBackPressedAddNote(): OnBackPressedCallback =
-        object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                Log.d("tag", "nen")
-                addNoteViewModel.insert(
-                    Note(
-                        title = binding.title.text.toString(),
-                        description = binding.description.text.toString()
-                    )
-                )
-                view?.post { findNavController().popBackStack() }
-            }
-        }
+    private val addNoteViewModel by activityViewModels<AddNoteViewModel>()
 
     override fun init() {
-        requireActivity().onBackPressedDispatcher.addCallback(onBackPressedAddNote())
+        requireActivity().onBackPressedDispatcher.addCallback(onBackPressed {
+            binding.run {
+                if (noteInfo.description.text.isNotEmpty()) {
+                    addNoteViewModel.insert(
+                        Note(
+                            title = noteInfo.title.text.toString(),
+                            description = noteInfo.description.text.toString()
+                        )
+                    )
+                }
+            }
+            view?.post { findNavController().popBackStack() }
+        })
+
+        (activity as AppCompatActivity).setSupportActionBar(binding.toolbar as Toolbar)
+        setHasOptionsMenu(true)
+        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true);
+        (activity as AppCompatActivity).supportActionBar?.setDisplayShowHomeEnabled(true);
     }
+
+
 }

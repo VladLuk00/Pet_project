@@ -49,8 +49,8 @@ class NoteInfoFragment(
     override fun onResume() {
         super.onResume()
         CoroutineScope(Dispatchers.Default).launch {
-            binding.noteInfo.noteInfoTitleId.doAfterTextChanged { viewModel.updateTitle(it.toString(), noteId) }
-            binding.noteInfo.noteInfoDescriptionId.doAfterTextChanged { viewModel.updateDescription(it.toString(), noteId) }
+            binding.noteInfo.title.doAfterTextChanged { viewModel.updateTitle(it.toString(), noteId) }
+            binding.noteInfo.description.doAfterTextChanged { viewModel.updateDescription(it.toString(), noteId) }
         }
     }
 
@@ -86,13 +86,18 @@ class NoteInfoFragment(
 
     override fun init() {
         noteId = arguments?.getInt("id")!!
-        binding.noteInfo.noteInfoDescriptionId.text = SpannableStringBuilder(arguments?.getString("description"))
-        binding.noteInfo.noteInfoTitleId.text = SpannableStringBuilder(arguments?.getString("title"))
+        binding.noteInfo.title.text = SpannableStringBuilder(arguments?.getString("description"))
+        binding.noteInfo.description.text = SpannableStringBuilder(arguments?.getString("title"))
         val configuration = AppBarConfiguration(findNavController().graph)
 
-        //toolbar.inflateMenu(R.menu.menu_toolbar_note_info)
+        requireActivity().onBackPressedDispatcher.addCallback(onBackPressed {
+            view?.post { findNavController().popBackStack() }
+        })
+
         (activity as AppCompatActivity).setSupportActionBar(binding.toolbarNoteInfo as Toolbar)
         setHasOptionsMenu(true)
+        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true);
+        (activity as AppCompatActivity).supportActionBar?.setDisplayShowHomeEnabled(true);
 
         requireActivity().onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {

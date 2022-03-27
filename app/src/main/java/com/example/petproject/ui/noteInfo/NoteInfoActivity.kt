@@ -5,6 +5,8 @@ import android.util.Log
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
@@ -16,12 +18,14 @@ import petrov.kristiyan.colorpicker.ColorPicker
 @AndroidEntryPoint
 class NoteInfoActivity : AppCompatActivity() {
 
+    lateinit var navController: NavController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_note_info)
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragmentNoteInfo) as NavHostFragment
-        val navController = navHostFragment.navController
+        navController = navHostFragment.navController
         val configuration = AppBarConfiguration(navController.graph)
         val toolbar: Toolbar = findViewById(R.id.toolbarNoteInfo)
 
@@ -49,5 +53,10 @@ class NoteInfoActivity : AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

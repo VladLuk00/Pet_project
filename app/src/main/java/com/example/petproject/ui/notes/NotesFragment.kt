@@ -61,9 +61,9 @@ class NotesFragment(override val bindingInflater: (LayoutInflater, ViewGroup?, B
             handler = myHandler
         }
 
-        noticeViewModel.listOfNotices.observe(viewLifecycleOwner, Observer {
+        noticeViewModel.listOfNotices.observe(viewLifecycleOwner) {
             it.let(notesAdapter::submitList)
-        })
+        }
 
         val toolbar = binding.toolbarListNoteId as Toolbar
         toolbar.inflateMenu(R.menu.menu_toolbar_note_info)

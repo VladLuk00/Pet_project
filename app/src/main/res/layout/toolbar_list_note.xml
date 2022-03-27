@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
     style="@style/HeaderBar"
+    app:title="Pet Project"
     app:menu="@menu/menu_toolbar_list_note">
 
 </androidx.appcompat.widget.Toolbar>
