@@ -15,7 +15,6 @@ import javax.inject.Inject
 class NoteInfoViewModel @Inject constructor
     (private val notesRepository: NotesRepository) : ViewModel() {
 
-
     fun updateDescription(description: String, id: Int) {
         CoroutineScope(Dispatchers.Default).launch {
             notesRepository.updateDescription(description, id)
@@ -25,6 +24,18 @@ class NoteInfoViewModel @Inject constructor
     fun updateTitle(title: String, id: Int) {
         CoroutineScope(Dispatchers.Default).launch {
             notesRepository.updateTitle(title, id)
+        }
+    }
+
+    fun updateColor(color: Int, id: Int) {
+        CoroutineScope(Dispatchers.Default).launch {
+            notesRepository.updateColor(color, id)
+        }
+    }
+
+    fun getColor(): Int {
+        CoroutineScope(Dispatchers.Default).launch {
+             notesRepository.getColor()
         }
     }
 }

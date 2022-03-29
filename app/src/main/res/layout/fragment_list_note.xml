@@ -61,6 +61,7 @@
             app:layout_constraintTop_toBottomOf="@+id/toolbar_list_note_id"
             app:layout_constraintVertical_bias="0.0"
             app:setCustomAdapter="@{adapter}"
+            tools:listitem="@layout/recycle_view_item_note"
             android:alpha="0.60"
             app:setSpaceItemDecoration="@{@dimen/recycle_view_note_space_around}"
             android:longClickable="true"
@@ -68,12 +69,12 @@
 
         </androidx.recyclerview.widget.RecyclerView>
 
-
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/appCompatButton"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginBottom="50dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="10dp"
             android:background="@drawable/add_note"
             android:onClick="@{(vie) -> handler.onAddButtonClick(vie)}"
             app:layout_constraintBottom_toBottomOf="parent"

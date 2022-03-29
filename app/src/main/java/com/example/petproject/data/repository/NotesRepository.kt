@@ -32,8 +32,15 @@ class NotesRepository @Inject constructor(val noteDao: NoteDao) {
         noteDao.deleteNote(note)
     }
 
+    suspend fun getColor(): Int {
+        return noteDao.getColor()
+    }
     suspend fun updateDescription(desciption: String, id: Int) {
         noteDao.updateDescription(desciption, id)
+    }
+
+    suspend fun updateColor(color: Int, id: Int) {
+        noteDao.updateColor(color, id)
     }
 
     suspend fun updateTitle(title: String, id: Int) {

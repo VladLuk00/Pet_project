@@ -10,6 +10,7 @@ data class Note (
     @PrimaryKey(autoGenerate = true) var noteId: Int = 0,
     @ColumnInfo(name = "title") val title: String = "",
     @ColumnInfo(name = "description") val description: String = "",
+    @ColumnInfo(name = "color") val color: Int? = 0,
     val labelAttachedId: Int? = 0,
     @Embedded var notification: Notification? = null
 )

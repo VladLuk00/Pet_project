@@ -1,13 +1,14 @@
 package com.example.petproject.ui.noteInfo
 
 import android.graphics.drawable.ColorDrawable
-import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.util.Log
 import android.view.*
+import android.view.WindowManager.LayoutParams
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.activityViewModels
@@ -72,6 +73,9 @@ class NoteInfoFragment(
                 colorPicker.setOnChooseColorListener(object : ColorPicker.OnChooseColorListener {
                     override fun onChooseColor(position: Int, color: Int) {
                         binding.toolbarNoteInfo.background = ColorDrawable(color)
+                        val window = activity!!.window
+                        window.statusBarColor = color
+                        viewModel.updateColor(color, noteId)
                     }
 
                     override fun onCancel() {
@@ -88,7 +92,11 @@ class NoteInfoFragment(
         noteId = arguments?.getInt("id")!!
         binding.noteInfo.title.text = SpannableStringBuilder(arguments?.getString("description"))
         binding.noteInfo.description.text = SpannableStringBuilder(arguments?.getString("title"))
+
         val configuration = AppBarConfiguration(findNavController().graph)
+
+        val window = requireActivity().window
+        window.statusBarColor = viewModel.getColor()
 
         requireActivity().onBackPressedDispatcher.addCallback(onBackPressed {
             view?.post { findNavController().popBackStack() }
